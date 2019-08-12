@@ -20,6 +20,7 @@ public class StepDefinations {
 	public void i_am_on_the_Home_Page_of_developer_hear_Website(String url) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
 		SeleniumDriver.openPage(url);
+		
 	}
 
 	@When("^I click the document link in the developer hear Website$")

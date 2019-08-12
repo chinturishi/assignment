@@ -17,7 +17,6 @@ public class SeleniumHelper {
 		} catch (NoSuchElementException e) {
 			return false;
 		}
-
 	}
 
 	public static boolean chekStatusCode(String link) {
@@ -51,5 +50,7 @@ public class SeleniumHelper {
 			return false;
 		}
 	}
+	
+	
 
 }

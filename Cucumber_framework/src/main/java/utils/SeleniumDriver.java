@@ -4,8 +4,10 @@ package utils;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -39,6 +41,7 @@ public class SeleniumDriver {
     	System.out.println(url);
     	System.out.println(driver);
         driver.get(url);
+        SeleniumDriver.waitForAngularLoad();
     }
 
     public static WebDriver getDriver() {
@@ -66,5 +69,27 @@ public class SeleniumDriver {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    }
+    
+    public static void waitForAngularLoad() {
+    	JavascriptExecutor jsExec = (JavascriptExecutor) driver;
+    	 
+        String angularReadyScript = "return angular.element(document).injector().get('$http').pendingRequests.length === 0";
+ 
+        //Wait for ANGULAR to load
+        ExpectedCondition<Boolean> angularLoad = drivers -> Boolean.valueOf(((JavascriptExecutor) driver)
+                .executeScript(angularReadyScript).toString());
+ 
+        //Get Angular is Ready
+        boolean angularReady = Boolean.valueOf(jsExec.executeScript(angularReadyScript).toString());
+ 
+        //Wait ANGULAR until it is Ready!
+        if(!angularReady) {
+            System.out.println("ANGULAR is NOT Ready!");
+            //Wait for Angular to load
+            waitDriver.until(angularLoad);
+        } else {
+            System.out.println("ANGULAR is Ready!");
+        }
     }
 }

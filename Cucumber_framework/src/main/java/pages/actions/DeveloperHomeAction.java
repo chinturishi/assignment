@@ -16,5 +16,6 @@ public class DeveloperHomeAction {
 
 	public void clickDocumentLink() {
 		locators.documentLink.click();
+		SeleniumDriver.waitForAngularLoad();
 	}
 }
