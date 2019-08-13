@@ -29,46 +29,34 @@ public class DeveloperDocumentAction {
 		assert1.assertAll();
 	}
 
-	public List<String> getAllLinks() {
+	public List<WebElement> getAllLinks() {
 		List<WebElement> elements = SeleniumDriver.getDriver().findElements(By.tagName("a"));
-		List<String> links = new ArrayList<String>();
-		for (WebElement element : elements) {
-			String link = element.getAttribute("href");
-			if (link != null && link.contains("/documentation"))
-				links.add(link);
-		}
-		return links;
+		return elements;
 	}
 
-	public List<String> getAllfooterLinks() {
-		List<WebElement> elements = locator.footer.findElements(By.tagName("a"));
-		List<String> links = new ArrayList<String>();
-		for (WebElement element : elements) {
-			String link = element.getAttribute("href");
-			if (link != null && !link.contains("/documentation"))
-				links.add(link);
-		}
-		return links;
-	}
+	/*
+	 * public List<WebElement> getAllfooterLinks() { List<WebElement> elements =
+	 * locator.footer.findElements(By.tagName("a")); return elements; }
+	 */
 
-	public void validateAllLinks(List<String> links) {
+	public void validateAllLinks(List<WebElement> elements) {
 		//SoftAssert assert1 = new SoftAssert();
-		for (String link : links) {
-			boolean status = SeleniumHelper.chekStatusCode(link);
+		System.out.println(elements.size()+":size");
+		for (WebElement element : elements) {
+			String link = element.getAttribute("href");
+			if (link != null && link.contains("/documentation")) {
+			boolean status = SeleniumHelper.chekStatusCode(link,element);
 			//assert1.assertTrue(status, link + " not working.");
 			Assert.assertTrue(status, link + " not working.");
+			}			
+			}
 		}
-		//assert1.assertAll();
-	}
 
-	public List<String> getAllheaderLinks() {
-		List<WebElement> elements = locator.header.findElements(By.tagName("link"));
-		List<String> links = new ArrayList<String>();
-		for (WebElement element : elements) {
-			String link = element.getAttribute("href");
-			if (link != null && !link.contains("/documentation"))
-				links.add(link);
-		}
-		return links;
-	}
+	/*
+	 * public List<String> getAllheaderLinks() { List<WebElement> elements =
+	 * locator.header.findElements(By.tagName("link")); List<String> links = new
+	 * ArrayList<String>(); for (WebElement element : elements) { String link =
+	 * element.getAttribute("href"); if (link != null &&
+	 * !link.contains("/documentation")) links.add(link); } return links; }
+	 */
 }

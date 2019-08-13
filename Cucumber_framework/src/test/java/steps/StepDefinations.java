@@ -14,7 +14,7 @@ import utils.SeleniumDriver;
 public class StepDefinations {
 	DeveloperHomeAction homeAction=new DeveloperHomeAction();
 	DeveloperDocumentAction docAction=new DeveloperDocumentAction();
-	List<String> links;
+	List<WebElement> links;
 	
 	@Given("^I am on the Home Page \"([^\"]*)\" of developer hear Website$")
 	public void i_am_on_the_Home_Page_of_developer_hear_Website(String url) throws Throwable {
@@ -51,12 +51,12 @@ public class StepDefinations {
 	@Then("^get all links of footer not realted to \"([^\"]*)\"$")
 	public void get_all_links_of_footer_not_realted_to(String arg1) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-		links=docAction.getAllfooterLinks();
+		//links=docAction.getAllfooterLinks();
 	}
 
 	@Then("^get all links of header not realted to \"([^\"]*)\"$")
 	public void get_all_links_of_header_not_realted_to(String arg1) throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-		links=docAction.getAllheaderLinks();
+		//links=docAction.getAllheaderLinks();
 	}
 }
